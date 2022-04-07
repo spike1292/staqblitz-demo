@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "projects": {
+    "auth": "libs/auth",
+    "auth-core": "libs/auth-core",
+    "dashboard": "apps/dashboard",
+    "flights": "apps/flights",
+    "flights-backend": "apps/flights-backend",
+    "login": "apps/login",
+    "login-backend": "apps/login-backend",
+    "shell": "apps/shell"
+  }
+}

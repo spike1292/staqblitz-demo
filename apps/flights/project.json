@@ -1,0 +1,72 @@
+{
+  "root": "apps/flights",
+  "sourceRoot": "apps/flights/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/flights",
+        "index": "apps/flights/src/index.html",
+        "baseHref": "/",
+        "main": "apps/flights/src/index.ts",
+        "polyfills": "apps/flights/src/polyfills.ts",
+        "tsConfig": "apps/flights/tsconfig.app.json",
+        "assets": ["apps/flights/src/favicon.ico", "apps/flights/src/assets"],
+        "styles": ["apps/flights/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/flights/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/flights/src/environments/environment.ts",
+              "with": "apps/flights/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "flights:build",
+        "hmr": false,
+        "proxyConfig": "apps/flights/proxy.conf.json",
+        "port": 4203
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "flights:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/flights/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/flights"],
+      "options": {
+        "jestConfig": "apps/flights/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
